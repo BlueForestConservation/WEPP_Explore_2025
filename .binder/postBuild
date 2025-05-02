@@ -1,13 +1,1 @@
 #!/bin/bash
-set -e
-
-# Install jupyter_contrib_nbextensions
-pip install jupyter_contrib_nbextensions
-
-# Install and enable the nbextensions
-jupyter contrib nbextension install --user
-jupyter nbextensions_configurator enable --user
-
-# Enable specific extensions as needed
-jupyter nbextension enable collapsible_headings/main
-jupyter nbextension enable codefolding/main
