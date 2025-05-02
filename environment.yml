@@ -1,11 +1,17 @@
-name: wepp_env
+name: firemodel-env
 channels:
   - conda-forge
 dependencies:
-  - python=3.11  # or whatever version you're using
+  - python=3.12  # or your preferred version
   - pandas
-  - geopandas
-  - numpy
   - matplotlib
+  - geopandas
   - contextily
+  - ipywidgets
+  - notebook
   - jupyterlab
+  - ipykernel
+  - xyzservices  # required by contextily for basemaps
+  - pip
+  - pip:
+      - ipywidgets  # ensure ipywidgets works fully in notebook
