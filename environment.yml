@@ -1,0 +1,11 @@
+name: wepp_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11  # or whatever version you're using
+  - pandas
+  - geopandas
+  - numpy
+  - matplotlib
+  - contextily
+  - jupyterlab
