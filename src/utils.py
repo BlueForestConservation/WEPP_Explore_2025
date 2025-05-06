@@ -191,7 +191,16 @@ def interactive_hayman_plot(hayman_df):
         fig.tight_layout()
         plt.show()
 
-    runoff_options = [col for col in df_2003.columns if df_2003[col].dtype != 'O' and col not in ['Year', 'Month', 'Day']]
+    allowed_vars = [
+        'Sed Del (kg)', 'Sed Del c1 (kg)', 'Sed Del c2 (kg)', 'Sed Del c3 (kg)',
+        'Sed Del c4 (kg)', 'Sed Del c5 (kg)', 'Cumulative Sed Del (tonnes)',
+        'Sed Del Density (tonne/ha)', 'Precipitation (mm)', 'Rain + Melt (mm)',
+        'Transpiration (mm)', 'Evaporation (mm)', 'ET (mm)', 'Percolation (mm)',
+        'Runoff (mm)', 'Lateral Flow (mm)', 'Storage (mm)',
+        'Reservoir Volume (mm)', 'Baseflow (mm)', 'Aquifer Losses (mm)',
+        'Streamflow (mm)'
+        ]
+    runoff_options = [col for col in allowed_vars if col in df_2003.columns]
     interact(plot_with_variable, runoff_var=widgets.Dropdown(options=runoff_options, description='Variable:'))
 
 def interactive_hayman_map():
@@ -229,7 +238,16 @@ def interactive_hayman_map():
         plt.tight_layout()
         plt.show()
 
-    column_options = [col for col in hayman_web.columns if col not in hayman_web.geometry.name]
+    allowed_columns = [
+    'slope_scalar', 'length_m', 'width_m', 'direction',
+    'aspect', 'area_m2', 'cancov', 'inrcov', 'rilcov', 'disturbed_class',
+    'mukey', 'clay', 'sand', 'Runoff_Volume_m3', 'Subrunoff_Volume_m3',
+    'Baseflow_Volume_m3', 'Soil_Loss_kg', 'Sediment_Deposition_kg',
+    'Sediment_Yield_kg', 'Solub_React_Phosphorus_kg',
+    'Particulate_Phosphorus_kg', 'Total_Phosphorus_kg', 'Soil', 'Runoff_mm',
+    'Subrunoff_mm', 'Baseflow_mm', 'DepLoss_kg'
+    ]
+    column_options = [col for col in allowed_columns if col in hayman_web.columns]
     interact(plot_column, column=widgets.Dropdown(options=column_options, description='Attribute:'))
 
 def interactive_coon_plot(coon_df):
@@ -265,7 +283,16 @@ def interactive_coon_plot(coon_df):
         fig.tight_layout()
         plt.show()
 
-    runoff_options = [col for col in df.columns if df[col].dtype != 'O' and col not in ['Year', 'Month', 'Day']]
+    allowed_vars = [
+    'Sed Del (kg)', 'Sed Del c1 (kg)', 'Sed Del c2 (kg)', 'Sed Del c3 (kg)',
+    'Sed Del c4 (kg)', 'Sed Del c5 (kg)', 'Cumulative Sed Del (tonnes)',
+    'Sed Del Density (tonne/ha)', 'Precipitation (mm)', 'Rain + Melt (mm)',
+    'Transpiration (mm)', 'Evaporation (mm)', 'ET (mm)', 'Percolation (mm)',
+    'Runoff (mm)', 'Lateral Flow (mm)', 'Storage (mm)',
+    'Reservoir Volume (mm)', 'Baseflow (mm)', 'Aquifer Losses (mm)',
+    'Streamflow (mm)'
+    ]
+    runoff_options = [col for col in allowed_vars if col in df.columns]
     interact(plot_with_variable, runoff_var=widgets.Dropdown(options=runoff_options, description='Variable:'))
 
 def interactive_coon_map():
@@ -300,7 +327,16 @@ def interactive_coon_map():
         plt.tight_layout()
         plt.show()
 
-    column_options = [col for col in coon_web.columns if col != coon_web.geometry.name and coon_web[col].nunique() > 1]
+    allowed_columns = [
+        'slope_scalar', 'length_m', 'width_m', 'direction',
+        'aspect', 'area_m2', 'cancov', 'inrcov', 'rilcov', 'disturbed_class',
+        'mukey', 'clay', 'sand', 'Runoff_Volume_m3', 'Subrunoff_Volume_m3',
+        'Baseflow_Volume_m3', 'Soil_Loss_kg', 'Sediment_Deposition_kg',
+        'Sediment_Yield_kg', 'Solub_React_Phosphorus_kg',
+        'Particulate_Phosphorus_kg', 'Total_Phosphorus_kg', 'Soil', 'Runoff_mm',
+        'Subrunoff_mm', 'Baseflow_mm', 'DepLoss_kg'
+        ]
+    column_options = [col for col in allowed_columns if col in coon_web.columns]
     interact(plot_column, column=widgets.Dropdown(options=column_options, description='Attribute:'))
 
 def interactive_carr_plot(carr_dfs, carr_ws):
@@ -335,7 +371,16 @@ def interactive_carr_plot(carr_dfs, carr_ws):
             fig.tight_layout()
             plt.show()
 
-        runoff_options = [col for col in df.columns if df[col].dtype != 'O' and col not in ['Year', 'Month', 'Day']]
+        allowed_vars = [
+            'Sed Del (kg)', 'Sed Del c1 (kg)', 'Sed Del c2 (kg)', 'Sed Del c3 (kg)',
+            'Sed Del c4 (kg)', 'Sed Del c5 (kg)', 'Cumulative Sed Del (tonnes)',
+            'Sed Del Density (tonne/ha)', 'Precipitation (mm)', 'Rain + Melt (mm)',
+            'Transpiration (mm)', 'Evaporation (mm)', 'ET (mm)', 'Percolation (mm)',
+            'Runoff (mm)', 'Lateral Flow (mm)', 'Storage (mm)',
+            'Reservoir Volume (mm)', 'Baseflow (mm)', 'Aquifer Losses (mm)',
+            'Streamflow (mm)'
+        ]
+        runoff_options = [col for col in allowed_vars if col in df.columns]
         interact(plot_with_variable, runoff_var=widgets.Dropdown(options=runoff_options, description='Variable:'))
 
     interact(plot_watershed, watershed=widgets.Dropdown(options=carr_ws, description='Watershed:'))
@@ -377,7 +422,16 @@ def interactive_carr_map():
 
     def update_columns(watershed):
         gdf = gdf_dict[watershed]
-        column_options = [col for col in gdf.columns if col != gdf.geometry.name and gdf[col].nunique() > 1]
+        allowed_columns = [
+        'slope_scalar', 'length_m', 'width_m', 'direction',
+        'aspect', 'area_m2', 'cancov', 'inrcov', 'rilcov', 'disturbed_class',
+        'mukey', 'clay', 'sand', 'Runoff_Volume_m3', 'Subrunoff_Volume_m3',
+        'Baseflow_Volume_m3', 'Soil_Loss_kg', 'Sediment_Deposition_kg',
+        'Sediment_Yield_kg', 'Solub_React_Phosphorus_kg',
+        'Particulate_Phosphorus_kg', 'Total_Phosphorus_kg', 'Soil', 'Runoff_mm',
+        'Subrunoff_mm', 'Baseflow_mm', 'DepLoss_kg'
+        ]
+        column_options = [col for col in allowed_columns if col in gdf.columns]
         interact(lambda column: plot_carr(watershed, column), column=widgets.Dropdown(options=column_options, description='Attribute:'))
 
     interact(update_columns, watershed=widgets.Dropdown(options=carr_ws, description='Watershed:'))
